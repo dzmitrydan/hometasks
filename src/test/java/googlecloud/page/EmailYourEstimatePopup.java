@@ -27,10 +27,10 @@ public class EmailYourEstimatePopup extends AbstractPage {
 
 
     public void fillingAndSubmitEmailYourEstimateForm(String email){
-        driver.switchTo().frame(driver.findElement(By.id("idIframe")));
-
+        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe")));
+        driver.switchTo().frame(driver.findElement(By.id("myFrame")));
         inputEmail.sendKeys(email);
-        buttonSendEmail.click();
+        executor.executeScript("arguments[0].click();", buttonSendEmail);
     }
 
 

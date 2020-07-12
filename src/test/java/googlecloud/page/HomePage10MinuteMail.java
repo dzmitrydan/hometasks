@@ -1,7 +1,6 @@
 package googlecloud.page;
 
 import googlecloud.wait.LoadPageConditions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,13 +18,13 @@ public class HomePage10MinuteMail extends AbstractPage {
     }
 
 
-    @FindBy(id = "mailAddress")
+    @FindBy(id = "mail_address")
     private WebElement fieldMailAddress;
 
-    @FindBy(id = "messagesList")
-    private WebElement messagesList;
+    @FindBy(xpath = "//*[@id='mail_messages_content']/div[1]/div[1]/div[3]/span[text()='Google Cloud Platform Price Estimate']")
+    private WebElement messageFromGoogleCloud;
 
-    @FindBy(xpath = "//*[@id='mobilepadding']/td/h2")
+    @FindBy(xpath = "//*[@id='mobilepadding']/td/table/tbody/tr[2]/td[2]/h3")
     private WebElement totalEstimatedMonthlyCost;
 
 
@@ -43,16 +42,12 @@ public class HomePage10MinuteMail extends AbstractPage {
 
     public double getTotalEstimatedMonthlyCost(){
         waitMessage = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS_FOR_MESSAGE);
-        waitMessage.until(ExpectedConditions.visibilityOf(messagesList));
-
-        WebElement messageFromGoogleCloudPlatform = messagesList.findElement(By.xpath(".//h3/span[text()='Google Cloud Platform Price Estimate']"));
-        messageFromGoogleCloudPlatform.click();
+        waitMessage.until(ExpectedConditions.visibilityOf(messageFromGoogleCloud)).click();
 
         executor.executeScript("arguments[0].scrollIntoView(true);", totalEstimatedMonthlyCost);
 
         String stringTotalEstimatedMonthlyCost = totalEstimatedMonthlyCost.getText();
         stringTotalEstimatedMonthlyCost = stringTotalEstimatedMonthlyCost.replaceAll("[^0-9.]", "");
-
         return Double.parseDouble(stringTotalEstimatedMonthlyCost);
     }
 

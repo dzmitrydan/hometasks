@@ -17,7 +17,8 @@ public class PricingCalculatorPage extends AbstractPage {
 
     public PricingCalculatorPage(WebDriver driver) {
         super(driver);
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("idIframe")));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe")));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("myFrame")));
         ngDriver = new NgWebDriver((JavascriptExecutor) driver);
         ngDriver.waitForAngularRequestsToFinish();
     }
@@ -26,37 +27,37 @@ public class PricingCalculatorPage extends AbstractPage {
     @FindBy(xpath ="//*[@id='mainForm']/md-tabs/md-tabs-wrapper/md-tabs-canvas/md-pagination-wrapper/md-tab-item[1]")
     private WebElement tabComputeEngine;
 
-    @FindBy(id = "input_53")
+    @FindBy(id = "input_59")
     private WebElement inputNumberOfInstances;
 
-    @FindBy(id = "input_54")
+    @FindBy(id = "input_60")
     private WebElement inputWhatAreTheseInstancesFor;
 
-    @FindBy(id = "select_option_55")
+    @FindBy(id = "select_option_61")
     private WebElement dropdownOperatingSystemSoftwareFree;
 
-    @FindBy(id ="select_option_67")
+    @FindBy(id = "select_option_73")
     private WebElement dropdownMachineClassRegular;
 
-    @FindBy(id ="select_option_217")
+    @FindBy(id ="select_option_214")
     private WebElement dropdownMachineTypeN1standard8;
 
     @ByAngularModel.FindBy(model = "listingCtrl.computeServer.addGPUs")
     private WebElement checkboxAddGPUs;
 
-    @FindBy(id ="select_option_353")
+    @FindBy(id ="select_option_343")
     private WebElement dropdownNumberOfGPUs1;
 
     @FindBy(xpath ="//md-option[@value='NVIDIA_TESLA_V100']")
     private WebElement dropdownGPUTypeNVIDIATeslaV100;
 
-    @FindBy(id ="select_option_171")
+    @FindBy(id ="select_option_235")
     private WebElement dropdownLocalSSD2x375Gb;
 
-    @FindBy(id ="select_option_185")
+    @FindBy(id ="select_option_182")
     private WebElement dropdownDatacenterLocationFrankfurt;
 
-    @FindBy(id ="select_option_83")
+    @FindBy(id ="select_option_91")
     private WebElement dropdownCommitedUsage1Year;
 
     @ByAngularPartialButtonText.FindBy(partialButtonText = "Add to Estimate")
@@ -64,7 +65,7 @@ public class PricingCalculatorPage extends AbstractPage {
 
 
     public PricingCalculatorPage goToTabComputeEngine(){
-        tabComputeEngine.click();
+        executor.executeScript("arguments[0].click();", tabComputeEngine);
         return this;
     }
 
@@ -75,30 +76,30 @@ public class PricingCalculatorPage extends AbstractPage {
         inputWhatAreTheseInstancesFor.sendKeys(textWhatAreTheseInstancesFor);
 
         executor.executeScript("arguments[0].click();", dropdownOperatingSystemSoftwareFree);
-        dropdownOperatingSystemSoftwareFree.click();
+        executor.executeScript("arguments[0].click();", dropdownOperatingSystemSoftwareFree);
 
         executor.executeScript("arguments[0].click();", dropdownMachineClassRegular);
-        dropdownMachineClassRegular.click();
+        executor.executeScript("arguments[0].click();", dropdownMachineClassRegular);
 
         executor.executeScript("arguments[0].click();", dropdownMachineTypeN1standard8);
-        dropdownMachineTypeN1standard8.click();
+        executor.executeScript("arguments[0].click();", dropdownMachineTypeN1standard8);
 
-        checkboxAddGPUs.click();
+        executor.executeScript("arguments[0].click();", checkboxAddGPUs);
 
         executor.executeScript("arguments[0].click();", dropdownNumberOfGPUs1);
-        dropdownNumberOfGPUs1.click();
+        executor.executeScript("arguments[0].click();", dropdownNumberOfGPUs1);
 
         executor.executeScript("arguments[0].click();", dropdownGPUTypeNVIDIATeslaV100);
-        dropdownGPUTypeNVIDIATeslaV100.click();
+        executor.executeScript("arguments[0].click();", dropdownGPUTypeNVIDIATeslaV100);
 
         executor.executeScript("arguments[0].click();", dropdownLocalSSD2x375Gb);
-        dropdownLocalSSD2x375Gb.click();
+        executor.executeScript("arguments[0].click();", dropdownLocalSSD2x375Gb);
 
         executor.executeScript("arguments[0].click();", dropdownDatacenterLocationFrankfurt);
-        dropdownDatacenterLocationFrankfurt.click();
+        executor.executeScript("arguments[0].click();", dropdownDatacenterLocationFrankfurt);
 
         executor.executeScript("arguments[0].click();", dropdownCommitedUsage1Year);
-        dropdownCommitedUsage1Year.click();
+        executor.executeScript("arguments[0].click();", dropdownCommitedUsage1Year);
 
         buttonAddToEstimate.submit();
 

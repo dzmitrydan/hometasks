@@ -1,10 +1,9 @@
 package googlecloud.page;
 
-import googlecloud.wait.LoadPageConditions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GoogleCloudHomePage extends AbstractPage {
 
@@ -15,24 +14,27 @@ public class GoogleCloudHomePage extends AbstractPage {
     }
 
 
-    @FindBy(partialLinkText = "See all 100+ products")
-    private WebElement linkSeeAllProducts;
+    @FindBy(xpath = "//a[@href='/pricing']")
+    private WebElement tabPrising;
+
+    @FindBy(xpath = "//a[@href='/products/calculator']")
+    private WebElement dropdownItemCalculators;
 
     public GoogleCloudHomePage openHomePage(){
         driver.get(HOMEPAGE_URL);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(LoadPageConditions.jQueryAJAXsCompleted());
+        wait.until(ExpectedConditions.elementToBeClickable(tabPrising));
         return this;
     }
 
-    public ProductsAndServicesPage openProductsAndServicesPage(){
-        executor.executeScript("arguments[0].scrollIntoView(true);", linkSeeAllProducts);
-        executor.executeScript("arguments[0].click();", linkSeeAllProducts);
+    public PricingCalculatorPage openPricingCalculatorPage(){
+        tabPrising.click();
+        wait.until(ExpectedConditions.elementToBeClickable(dropdownItemCalculators));
+        dropdownItemCalculators.click();
 
         for (String handle : driver.getWindowHandles()) {
             driver.switchTo().window(handle);
         }
 
-        wait.until(LoadPageConditions.jQueryAJAXsCompleted());
-        return new ProductsAndServicesPage(driver);
+        return new PricingCalculatorPage(driver);
     }
 }

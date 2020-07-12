@@ -79,7 +79,7 @@ public class PricingCalculatorPageComputeEnginePopup extends AbstractPage {
 
     public EmailYourEstimatePopup openEmailYourEstimatePopup(){
         wait.until((ExpectedConditions.visibilityOfAllElementsLocatedBy(ByAngular.partialButtonText("Email Estimate"))));
-        buttonEmailEstimate.click();
+        executor.executeScript("arguments[0].click();", buttonEmailEstimate);
         return new EmailYourEstimatePopup(driver);
     }
 

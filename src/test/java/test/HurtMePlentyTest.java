@@ -21,8 +21,6 @@ public class HurtMePlentyTest {
 
         GoogleCloudHomePage googleCloudHomePage = new GoogleCloudHomePage(driver);
         pricingCalculatorPageComputeEnginePopup = googleCloudHomePage.openHomePage()
-                .openProductsAndServicesPage()
-                .openPricingPage()
                 .openPricingCalculatorPage()
                 .goToTabComputeEngine()
                 .fillingAndSubmitInstancesForm("4", "");
@@ -49,7 +47,7 @@ public class HurtMePlentyTest {
     @Test
     public void matchingTextLocalSSDToInputtedInTheForm(){
         String actualLocalSSDText = pricingCalculatorPageComputeEnginePopup.getLocalSSD();
-        Assert.assertEquals(actualLocalSSDText, "Total available local SSD space 2x375 GB");
+        Assert.assertEquals(actualLocalSSDText, "Total available local SSD space 2x375 GiB");
     }
 
     @Test
@@ -61,7 +59,7 @@ public class HurtMePlentyTest {
     @Test
     public void totalEstimatedCostIsMatchingToManualExecutionOfTest(){
         double actualTotalEstimatedCost = pricingCalculatorPageComputeEnginePopup.getTotalEstimatedCostPerMonth();
-        double totalEstimatedCostByManuallyExecuting = Double.parseDouble("1,187.77".replace(",", ""));
+        double totalEstimatedCostByManuallyExecuting = Double.parseDouble("1,082.77".replace(",", ""));
         Assert.assertEquals(actualTotalEstimatedCost, totalEstimatedCostByManuallyExecuting);
     }
 

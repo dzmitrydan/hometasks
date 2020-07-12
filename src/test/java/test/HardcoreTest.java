@@ -26,8 +26,6 @@ public class HardcoreTest {
 
         GoogleCloudHomePage googleCloudHomePage = new GoogleCloudHomePage(driver);
         pricingCalculatorPageComputeEnginePopup = googleCloudHomePage.openHomePage()
-                .openProductsAndServicesPage()
-                .openPricingPage()
                 .openPricingCalculatorPage()
                 .goToTabComputeEngine()
                 .fillingAndSubmitInstancesForm("4", "");
