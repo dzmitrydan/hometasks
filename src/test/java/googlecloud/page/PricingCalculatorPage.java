@@ -27,37 +27,37 @@ public class PricingCalculatorPage extends AbstractPage {
     @FindBy(xpath ="//*[@id='mainForm']/md-tabs/md-tabs-wrapper/md-tabs-canvas/md-pagination-wrapper/md-tab-item[1]")
     private WebElement tabComputeEngine;
 
-    @FindBy(id = "input_59")
+    @FindBy(id = "input_60")
     private WebElement inputNumberOfInstances;
 
-    @FindBy(id = "input_60")
+    @FindBy(id = "input_61")
     private WebElement inputWhatAreTheseInstancesFor;
 
-    @FindBy(id = "select_option_61")
+    @FindBy(id = "select_option_62")
     private WebElement dropdownOperatingSystemSoftwareFree;
 
-    @FindBy(id = "select_option_73")
+    @FindBy(id = "select_option_74")
     private WebElement dropdownMachineClassRegular;
 
-    @FindBy(id ="select_option_214")
+    @FindBy(id ="select_option_227")
     private WebElement dropdownMachineTypeN1standard8;
 
     @ByAngularModel.FindBy(model = "listingCtrl.computeServer.addGPUs")
     private WebElement checkboxAddGPUs;
 
-    @FindBy(id ="select_option_343")
+    @FindBy(id ="select_option_356")
     private WebElement dropdownNumberOfGPUs1;
 
     @FindBy(xpath ="//md-option[@value='NVIDIA_TESLA_V100']")
     private WebElement dropdownGPUTypeNVIDIATeslaV100;
 
-    @FindBy(id ="select_option_235")
+    @FindBy(id ="select_option_248")
     private WebElement dropdownLocalSSD2x375Gb;
 
-    @FindBy(id ="select_option_182")
+    @FindBy(id ="select_option_195")
     private WebElement dropdownDatacenterLocationFrankfurt;
 
-    @FindBy(id ="select_option_91")
+    @FindBy(id ="select_option_92")
     private WebElement dropdownCommitedUsage1Year;
 
     @ByAngularPartialButtonText.FindBy(partialButtonText = "Add to Estimate")
