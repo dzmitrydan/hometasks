@@ -1,9 +1,6 @@
 package test;
 
-import googlecloud.page.EmailYourEstimatePopup;
-import googlecloud.page.GoogleCloudHomePage;
-import googlecloud.page.HomePage10MinuteMail;
-import googlecloud.page.PricingCalculatorPageComputeEnginePopup;
+import googlecloud.page.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,19 +34,18 @@ public class HardcoreTest {
         double totalEstimatedCostTextOnPricingCalculatorPage = pricingCalculatorPageComputeEnginePopup.getTotalEstimatedCostPerMonth();
 
         EmailYourEstimatePopup emailYourEstimatePopup = pricingCalculatorPageComputeEnginePopup.openEmailYourEstimatePopup();
-        String tabWindowEmailYourEstimatePopup = driver.getWindowHandle();
 
-        openNewWindowTab();
+        WebBrowser webBrowser = new WebBrowser();
+        webBrowser.openNewWebBrowserTab(driver);
 
         HomePage10MinuteMail homePage10MinuteMail = new HomePage10MinuteMail(driver);
         homePage10MinuteMail.openHomePage10MinuteMail();
-        String tabWindowHomePage10MinuteMail = driver.getWindowHandle();
         String mailAddress = homePage10MinuteMail.getMailAddress();
 
-        openExistingWindowTab(tabWindowEmailYourEstimatePopup);
+        webBrowser.openExistingWebBrowserTab(driver, emailYourEstimatePopup.getWebBrowserTab());
         emailYourEstimatePopup.fillingAndSubmitEmailYourEstimateForm(mailAddress);
 
-        openExistingWindowTab(tabWindowHomePage10MinuteMail);
+        webBrowser.openExistingWebBrowserTab(driver, homePage10MinuteMail.getWebBrowserTab());
         double actualTotalEstimatedMonthlyCostInEmail = homePage10MinuteMail.getTotalEstimatedMonthlyCost();
 
         Assert.assertEquals(actualTotalEstimatedMonthlyCostInEmail, totalEstimatedCostTextOnPricingCalculatorPage);

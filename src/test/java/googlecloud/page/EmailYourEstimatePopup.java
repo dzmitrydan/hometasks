@@ -11,11 +11,14 @@ import org.openqa.selenium.WebElement;
 public class EmailYourEstimatePopup extends AbstractPage {
 
     private NgWebDriver ngDriver;
+    private String webBrowserTab;
+
 
     protected EmailYourEstimatePopup(WebDriver driver) {
         super(driver);
         ngDriver = new NgWebDriver((JavascriptExecutor) driver);
         ngDriver.waitForAngularRequestsToFinish();
+        webBrowserTab = driver.getWindowHandle();
     }
 
 
@@ -31,6 +34,10 @@ public class EmailYourEstimatePopup extends AbstractPage {
         driver.switchTo().frame(driver.findElement(By.id("myFrame")));
         inputEmail.sendKeys(email);
         executor.executeScript("arguments[0].click();", buttonSendEmail);
+    }
+
+    public String getWebBrowserTab() {
+        return webBrowserTab;
     }
 
 

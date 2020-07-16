@@ -16,7 +16,7 @@ public class HomePage10MinuteMail extends AbstractPage {
     public HomePage10MinuteMail(WebDriver driver) {
         super(driver);
     }
-
+    private String webBrowserTab;
 
     @FindBy(id = "mail_address")
     private WebElement fieldMailAddress;
@@ -32,6 +32,7 @@ public class HomePage10MinuteMail extends AbstractPage {
         driver.get(HOMEPAGE_URL);
 
         wait.until(LoadPageConditions.jQueryAJAXsCompleted());
+        webBrowserTab = driver.getWindowHandle();
         return this;
     }
 
@@ -51,7 +52,8 @@ public class HomePage10MinuteMail extends AbstractPage {
         return Double.parseDouble(stringTotalEstimatedMonthlyCost);
     }
 
-
-
+    public String getWebBrowserTab() {
+        return webBrowserTab;
+    }
 
 }
