@@ -1,7 +1,6 @@
 package test;
 
 import googlecloud.page.*;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -57,13 +56,4 @@ public class HardcoreTest {
         driver = null;
     }
 
-    private void openNewWindowTab() {
-        ((JavascriptExecutor)driver).executeScript("window.open()");
-        widowTabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(widowTabs.get(1));
-    }
-
-    private void openExistingWindowTab(String tabPage) {
-        driver.switchTo().window(tabPage);
-    }
 }
