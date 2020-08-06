@@ -1,5 +1,6 @@
 package googlecloud.page;
 
+import googlecloud.util.DataTypeConverter;
 import googlecloud.wait.LoadPageConditions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,8 +49,8 @@ public class HomePage10MinuteMail extends AbstractPage {
         executor.executeScript("arguments[0].scrollIntoView(true);", totalEstimatedMonthlyCost);
 
         String stringTotalEstimatedMonthlyCost = totalEstimatedMonthlyCost.getText();
-        stringTotalEstimatedMonthlyCost = stringTotalEstimatedMonthlyCost.replaceAll("[^0-9.]", "");
-        return Double.parseDouble(stringTotalEstimatedMonthlyCost);
+
+        return DataTypeConverter.stringToDouble(stringTotalEstimatedMonthlyCost);
     }
 
     public String getWebBrowserTab() {

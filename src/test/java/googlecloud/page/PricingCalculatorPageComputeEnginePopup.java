@@ -3,6 +3,7 @@ package googlecloud.page;
 import com.paulhammant.ngwebdriver.ByAngular;
 import com.paulhammant.ngwebdriver.ByAngularPartialButtonText;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import googlecloud.util.DataTypeConverter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -72,9 +73,8 @@ public class PricingCalculatorPageComputeEnginePopup extends AbstractPage {
         WebElement totalEstimatedCostPerMonth = popupComputeEngine.findElement(By.xpath("following-sibling::h2/b"));
 
         String stringTotalEstimatedCostPerMonth = totalEstimatedCostPerMonth.getText();
-        stringTotalEstimatedCostPerMonth = stringTotalEstimatedCostPerMonth.replaceAll("[^0-9.]", "");
 
-        return Double.parseDouble(stringTotalEstimatedCostPerMonth.substring(0, stringTotalEstimatedCostPerMonth.length() - 1));
+        return DataTypeConverter.stringToDouble(stringTotalEstimatedCostPerMonth);
     }
 
     public EmailYourEstimatePopup openEmailYourEstimatePopup(){
