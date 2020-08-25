@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class University {
-    private String name;
-    private ArrayList<Faculty> faculties;
+    private final String name;
+    private final ArrayList<Faculty> faculties;
 
     public University(String name) {
         this.name = name;
@@ -18,12 +18,13 @@ public class University {
 
     public void setFaculty(Faculty faculty) throws Exception {
 
-        if(faculty.getGroups().size() == 0){
+        if (faculty.getGroups().size() == 0) {
             throw new Exception("Absence of groups at the faculty " + faculty.getName());
-        }faculties.add(faculty);
+        }
+        faculties.add(faculty);
     }
 
-    public Faculty getFacultyByName(String facultyName){
+    public Faculty getFacultyByName(String facultyName) {
         return faculties.stream().filter(s -> s.getName().equals(facultyName)).collect(Collectors.toList()).get(0);
     }
 

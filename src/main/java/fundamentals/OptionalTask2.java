@@ -19,10 +19,10 @@ public class OptionalTask2 {
         matrix = matrixCreator(dimensionMatrix, rangeValuesMatrix);
         printMatrix(matrix, dimensionMatrix);
 
-        System.out.println("Input the number of the column k (0 to " + (dimensionMatrix - 1)  + ")");
+        System.out.println("Input the number of the column k (0 to " + (dimensionMatrix - 1) + ")");
         int numberColumn = scanner.nextInt();
 
-        if (numberColumn >= 0 && numberColumn < dimensionMatrix){
+        if (numberColumn >= 0 && numberColumn < dimensionMatrix) {
             orderMatrixByRow(matrix, numberColumn);
             printMatrix(matrix, dimensionMatrix);
         } else System.out.print("The number must be between 0 and " + (dimensionMatrix - 1));
@@ -34,7 +34,7 @@ public class OptionalTask2 {
         int[][] matrixNew = new int[dimension][dimension];
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
-                matrixNew[i][j] = (int) (Math.random()*(value - (-value))) + (-value);
+                matrixNew[i][j] = (int) (Math.random() * (value - (-value))) + (-value);
             }
         }
         return matrixNew;

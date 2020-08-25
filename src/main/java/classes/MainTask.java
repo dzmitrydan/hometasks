@@ -7,21 +7,21 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class MainTask {
-    private static String creditCardCriteriaMax = "4566 4545 6445 4574";
+    private static final String creditCardCriteriaMax = "4566 4545 6445 4574";
 
     public static void main(String[] args) {
 
-        Customer [] list = new Customer[5];
+        Customer[] list = new Customer[5];
         list[0] = new Customer("Fedorov", "Ivan", "Alexandrovich", "Kutozov street, 23-14");
         list[0].setCreditCard("4566 4585 6745 5784");
         list[0].setBankAccount("40817 840 601500067890");
         list[1] = new Customer("Belkevich", "Catherine", "Viktorovna", "Mira street, 12");
         list[1].setCreditCard("4566 4545 6445 4574");
         list[1].setBankAccount("54544 158 785888852541");
-        list[2] = new Customer("Baranenko", "Helen", "Petrovna","Pushkin street, 56-152");
+        list[2] = new Customer("Baranenko", "Helen", "Petrovna", "Pushkin street, 56-152");
         list[2].setCreditCard("8754 1855 0005 7644");
         list[2].setBankAccount("40817 755 727224451750");
-        list[3] = new Customer("Petrov", "Peter","Ivanovich", "Napoleon street, 89");
+        list[3] = new Customer("Petrov", "Peter", "Ivanovich", "Napoleon street, 89");
         list[3].setCreditCard("8866 0005 6405 5700");
         list[3].setBankAccount("75577 415 475752400044");
         list[4] = new Customer("Ivanov", "Ivan", "Ivanovich", "Napoleon street, 5");
@@ -46,7 +46,7 @@ public class MainTask {
     }
 
     private static void printList(Customer[] list) {
-        for (Customer customer : list){
+        for (Customer customer : list) {
             System.out.println(customer.toString());
         }
         System.out.println();
@@ -54,8 +54,7 @@ public class MainTask {
 }
 
 
-
-class Customer{
+class Customer {
     private int id;
     private String surname;
     private String name;
@@ -90,15 +89,6 @@ class Customer{
         return id;
     }
 
-
-    public void setCreditCard(String card) {
-        creditCard = new BigInteger(card.replaceAll(" ", ""));
-    }
-
-    public void setBankAccount(String account) {
-        bankAccount = new BigInteger(account.replaceAll(" ", ""));
-    }
-
     public int getId() {
         return id;
     }
@@ -123,8 +113,16 @@ class Customer{
         return creditCard;
     }
 
+    public void setCreditCard(String card) {
+        creditCard = new BigInteger(card.replaceAll(" ", ""));
+    }
+
     public BigInteger getBankAccount() {
         return bankAccount;
+    }
+
+    public void setBankAccount(String account) {
+        bankAccount = new BigInteger(account.replaceAll(" ", ""));
     }
 
     @Override

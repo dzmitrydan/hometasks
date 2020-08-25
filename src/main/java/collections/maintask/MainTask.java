@@ -45,8 +45,8 @@ public class MainTask {
 
 
 class PowerComparator implements Comparator<ElectricalAppliance> {
-    public int compare(ElectricalAppliance a, ElectricalAppliance b){
-        return a.getPower()- b.getPower();
+    public int compare(ElectricalAppliance a, ElectricalAppliance b) {
+        return a.getPower() - b.getPower();
     }
 }
 

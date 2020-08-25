@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 public class Faculty {
 
+    private final ArrayList<Group> groups;
     private String name;
-    private ArrayList<Group> groups;
 
     public Faculty(String name) {
         this.name = name;
@@ -26,12 +26,12 @@ public class Faculty {
     }
 
     public void setGroup(Group group) throws Exception {
-        if(group.getStudents().size() == 0){
+        if (group.getStudents().size() == 0) {
             throw new Exception("Absence of students in the group " + group.getName());
         } else groups.add(group);
     }
 
-    public Group getGroupByName(int name){
+    public Group getGroupByName(int name) {
         return groups.stream().filter(s -> s.getName() == name).collect(Collectors.toList()).get(0);
     }
 

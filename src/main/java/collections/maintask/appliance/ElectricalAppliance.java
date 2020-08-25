@@ -2,11 +2,7 @@ package collections.maintask.appliance;
 
 public class ElectricalAppliance extends Appliance implements ElectricityConsumption {
 
-    String name;
-    String material;
-    String color;
-    String work;
-    int power;
+    private int power;
 
     public ElectricalAppliance(String name, String material, String color, String work, int power) {
         this.name = name;
@@ -61,8 +57,4 @@ public class ElectricalAppliance extends Appliance implements ElectricityConsump
 
     }
 
-    @Override
-    void doTheWork() {
-        super.doTheWork();
-    }
 }

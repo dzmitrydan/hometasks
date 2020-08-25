@@ -79,7 +79,7 @@ public class MainTask {
         double totalScore = 0.0;
         double totalNumberOfStudents = 0.0;
 
-        for(Faculty faculty : university.getFaculties()) {
+        for (Faculty faculty : university.getFaculties()) {
             for (Group group : faculty.getGroups()) {
                 totalNumberOfStudents += group.getStudents().size();
                 for (Student student : group.getStudents()) {
@@ -91,21 +91,21 @@ public class MainTask {
         System.out.println("Average score in the course " + courseName + " for the University" + university.getName() + " = " + averageScoreInCourseForUniversity);
     }
 
-    private static void averageScoreForCourseInClassAtFaculty(String courseName, int groupName, String facultyName, University university){
+    private static void averageScoreForCourseInClassAtFaculty(String courseName, int groupName, String facultyName, University university) {
         ArrayList<Student> students = university.getFacultyByName(facultyName).getGroupByName(groupName).getStudents();
         double totalScore = 0.0;
         for (Student student : students) {
             totalScore += (double) student.getAllCourses().get(courseName);
         }
         double averageScoreForCourseInClassAtfaculty = totalScore / (double) students.size();
-        System.out.println("Average score for a course " + courseName + " in a group " +  groupName + " and at a faculty " + facultyName + " = " + averageScoreForCourseInClassAtfaculty);
+        System.out.println("Average score for a course " + courseName + " in a group " + groupName + " and at a faculty " + facultyName + " = " + averageScoreForCourseInClassAtfaculty);
     }
 
     private static void averageScoreInAllCoursesForStudents(University university) throws Exception {
         System.out.println("Average score in all courses for a student:");
-        for(Faculty faculty : university.getFaculties()){
-            for(Group group : faculty.getGroups()){
-                for(Student student : group.getStudents()){
+        for (Faculty faculty : university.getFaculties()) {
+            for (Group group : faculty.getGroups()) {
+                for (Student student : group.getStudents()) {
                     System.out.println("\t" + student.getName() + " = " + student.getAverageScoreForStudent());
                 }
             }

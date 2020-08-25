@@ -11,9 +11,9 @@ import java.util.*;
 
 public class Palmetto {
 
-    private static Map<String, Double> baseIngredientsPizza;
     private final static int maxNumberIngredients = 7;
     private final static int maxQuantityPizza = 10;
+    private static Map<String, Double> baseIngredientsPizza;
 
     public static void main(String[] args) {
 
@@ -66,11 +66,11 @@ public class Palmetto {
 
     private static String[] ingredientVerification(String[] ingredients) {
         Set<String> set = new HashSet<>();
-        for (String item : ingredients){
-            if (set.contains(item)){
+        for (String item : ingredients) {
+            if (set.contains(item)) {
                 System.out.println("Please check the order, the ingredient " + item.toUpperCase() + " are repeated");
             } else {
-                if (set.size() < maxNumberIngredients){
+                if (set.size() < maxNumberIngredients) {
                     set.add(item);
                 } else System.out.println("The pizza is full, you can't add ingredient " + item.toUpperCase());
             }
@@ -151,7 +151,7 @@ public class Palmetto {
                     pizzas[i].getNamePizza().length() < 4 ||
                     pizzas[i].getNamePizza().length() > 20 ||
                     !pizzas[i].getNamePizza().matches("^[a-zA-Z0-9]+$")) {
-                String namePizzaNew = String.valueOf(order.getCustomerNumber()) + "_" + (i + 1);
+                String namePizzaNew = order.getCustomerNumber() + "_" + (i + 1);
                 pizzas[i].setNamePizza(namePizzaNew);
             }
         }
@@ -164,19 +164,19 @@ public class Palmetto {
         System.out.println("Клиент: " + order.getCustomerNumber());
         double totalSum = 0.0;
 
-        for (Pizza pizza : order.getPizzas()){
+        for (Pizza pizza : order.getPizzas()) {
             System.out.println("Название: " + pizza.getNamePizza());
             System.out.println("--------------------------------");
             String str = "\t";
-            if (pizza.getTypePizza().equals("Calzone")){
+            if (pizza.getTypePizza().equals("Calzone")) {
                 str = " (Calzone)";
             }
             double sumСostPizza = 0.0;
             double pizzaBasePrise = getPizzaBasePrice(pizza.getTypePizza());
-            System.out.println("Pizza Base" + str + "\t" +  pizzaBasePrise + " €");
+            System.out.println("Pizza Base" + str + "\t" + pizzaBasePrise + " €");
             sumСostPizza = sumСostPizza + pizzaBasePrise;
 
-            for (Ingredient ingredient : pizza.getIngredients()){
+            for (Ingredient ingredient : pizza.getIngredients()) {
                 System.out.println("\t" + ingredient.getName() + "\t\t" + ingredient.getPrice() + " €");
                 sumСostPizza = sumСostPizza + ingredient.getPrice();
             }
@@ -194,16 +194,16 @@ public class Palmetto {
     }
 
 
-    private static void printPizzaAttributes(Order order){
-        for (Pizza pizza : order.getPizzas()){
-            System.out.println("[" + order.getOrderNumber() + " : " + order.getCustomerNumber() +" : " + pizza.getNamePizza() + " : " + pizza.getQuantity() + "]");
+    private static void printPizzaAttributes(Order order) {
+        for (Pizza pizza : order.getPizzas()) {
+            System.out.println("[" + order.getOrderNumber() + " : " + order.getCustomerNumber() + " : " + pizza.getNamePizza() + " : " + pizza.getQuantity() + "]");
         }
     }
 
 
     private static double getPizzaBasePrice(String typePizza) {
         double priceBase = baseIngredientsPizza.get("Base");
-        if (typePizza.equals("Calzone")){
+        if (typePizza.equals("Calzone")) {
             return priceBase + baseIngredientsPizza.get(typePizza);
         } else return priceBase;
     }
@@ -212,7 +212,7 @@ public class Palmetto {
     private static Ingredient[] addIngredient(String[] ingredientsToOrder, Map<String, Double> baseIingredientsPizza) {
 
         List<Ingredient> listIngredient = new ArrayList<>();
-        for (String nameIngr : ingredientsToOrder){
+        for (String nameIngr : ingredientsToOrder) {
             double priceIng = baseIingredientsPizza.get(nameIngr);
             listIngredient.add(new Ingredient(nameIngr, priceIng));
         }

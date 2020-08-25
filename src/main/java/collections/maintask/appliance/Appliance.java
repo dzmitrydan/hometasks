@@ -1,12 +1,12 @@
 package collections.maintask.appliance;
 
 public abstract class Appliance {
-    String name;
-    String material;
-    String color;
-    String work;
+    protected String name;
+    protected String material;
+    protected String color;
+    protected String work;
 
-    void doTheWork() {
+    public void doTheWork() {
         System.out.println(name + ": do the " + work);
     }
 }

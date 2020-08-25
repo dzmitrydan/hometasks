@@ -1,4 +1,4 @@
-package pastebin;
+package pastebin.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,34 +10,34 @@ import java.util.Arrays;
 
 public class PastePage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
+
+    @FindBy(tagName = "h1")
+    private WebElement titleBrowserPage;
+
+    @FindBy(xpath = "//a[@class = 'btn -small h_800']")
+    private WebElement syntaxHighlighting;
+
+    @FindBy(xpath = "//textarea[@class='textarea']")
+    private WebElement textareaPasteCode;
 
     public PastePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(tagName = "h1")
-    private WebElement titleBrowserPage;
-
-    @FindBy(xpath = "//*[@id='code_buttons']/span[2]/a")
-    private WebElement syntaxHighlighting;
-
-    @FindBy(id = "paste_code")
-    private WebElement textareaPasteCode;
-
-
-    public String getTitleBrowserPage(){
+    public String getTitleBrowserPage() {
         return titleBrowserPage.getText();
     }
 
-    public String getSyntaxHighlighting(){
+    public String getSyntaxHighlighting() {
         return syntaxHighlighting.getText();
     }
 
-    public ArrayList<String> getPasteCode(){
+    public ArrayList<String> getPasteCode() {
         String pasteCode = textareaPasteCode.getText();
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(pasteCode.split("\n")));
         return arrayList;
     }
+
 }

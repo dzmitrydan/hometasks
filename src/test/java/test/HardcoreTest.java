@@ -10,15 +10,13 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 
-
 public class HardcoreTest {
 
     private WebDriver driver;
     private PricingCalculatorPageComputeEnginePopup pricingCalculatorPageComputeEnginePopup;
 
-
     @BeforeSuite
-    public void browserSetup(){
+    public void browserSetup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
@@ -30,7 +28,7 @@ public class HardcoreTest {
     }
 
     @Test
-    public void totalEstimatedCostInEmailIsMatchToPricingCalculatorPage(){
+    public void totalEstimatedCostInEmailIsMatchToPricingCalculatorPage() {
 
         double totalEstimatedCostTextOnPricingCalculatorPage = pricingCalculatorPageComputeEnginePopup.getTotalEstimatedCostPerMonth();
 
@@ -52,7 +50,7 @@ public class HardcoreTest {
     }
 
     @AfterSuite
-    public void browserClose(){
+    public void browserClose() {
         driver.quit();
         driver = null;
     }

@@ -13,63 +13,67 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PricingCalculatorPage extends AbstractPage {
 
-    private NgWebDriver ngDriver;
+    private final NgWebDriver ngDriver;
 
-    public PricingCalculatorPage(WebDriver driver) {
-        super(driver);
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe")));
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("myFrame")));
-        ngDriver = new NgWebDriver((JavascriptExecutor) driver);
-        ngDriver.waitForAngularRequestsToFinish();
-    }
+    @FindBy(xpath = "//iframe[contains(@name, 'goog')]")
+    private WebElement frame;
 
+    @FindBy(id = "myFrame")
+    private WebElement frameMyFrame;
 
-    @FindBy(xpath ="//*[@id='mainForm']/md-tabs/md-tabs-wrapper/md-tabs-canvas/md-pagination-wrapper/md-tab-item[1]")
+    @FindBy(xpath = "//*[contains(@title, 'Compute Engine')]")
     private WebElement tabComputeEngine;
 
-    @FindBy(id = "input_61")
+    @FindBy(name = "quantity")
     private WebElement inputNumberOfInstances;
 
-    @FindBy(id = "input_62")
+    @ByAngularModel.FindBy(model = "listingCtrl.computeServer.label")
     private WebElement inputWhatAreTheseInstancesFor;
 
-    @FindBy(id = "select_option_63")
+    @FindBy(xpath = "//div[contains(text(), 'Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS')]")
     private WebElement dropdownOperatingSystemSoftwareFree;
 
-    @FindBy(id = "select_option_75")
+    @FindBy(xpath = "//div[contains(text(), 'Regular')]")
     private WebElement dropdownMachineClassRegular;
 
-    @FindBy(id ="select_option_228")
+    @FindBy(xpath = "//div[contains(text(), 'n1-standard-8 (vCPUs: 8, RAM: 30GB)')]")
     private WebElement dropdownMachineTypeN1standard8;
 
     @ByAngularModel.FindBy(model = "listingCtrl.computeServer.addGPUs")
     private WebElement checkboxAddGPUs;
 
-    @FindBy(id ="select_option_357")
+    @FindBy(xpath = "//div[contains(text(), '1')]")
     private WebElement dropdownNumberOfGPUs1;
 
-    @FindBy(xpath ="//md-option[@value='NVIDIA_TESLA_V100']")
+    @FindBy(xpath = "//div[contains(text(), 'NVIDIA Tesla V100')]")
     private WebElement dropdownGPUTypeNVIDIATeslaV100;
 
-    @FindBy(id ="select_option_249")
+    @FindBy(xpath = "//div[contains(text(), '2x375 GB')]")
     private WebElement dropdownLocalSSD2x375Gb;
 
-    @FindBy(id ="select_option_196")
+    @FindBy(xpath = "//div[contains(text(), 'Frankfurt (europe-west3)')]")
     private WebElement dropdownDatacenterLocationFrankfurt;
 
-    @FindBy(id ="select_option_93")
+    @FindBy(xpath = "//div[contains(text(), '1 Year')]")
     private WebElement dropdownCommitedUsage1Year;
 
     @ByAngularPartialButtonText.FindBy(partialButtonText = "Add to Estimate")
     private WebElement buttonAddToEstimate;
 
+    public PricingCalculatorPage(WebDriver driver) {
+        super(driver);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameMyFrame));
+        ngDriver = new NgWebDriver((JavascriptExecutor) driver);
+        ngDriver.waitForAngularRequestsToFinish();
+    }
 
-    public PricingCalculatorPage goToTabComputeEngine(){
+    public PricingCalculatorPage goToTabComputeEngine() {
         executor.executeScript("arguments[0].click();", tabComputeEngine);
         return this;
     }
 
-    public PricingCalculatorPageComputeEnginePopup fillingAndSubmitInstancesForm(String textNumberOfInstances, String textWhatAreTheseInstancesFor){
+    public PricingCalculatorPageComputeEnginePopup fillingAndSubmitInstancesForm(String textNumberOfInstances, String textWhatAreTheseInstancesFor) {
 
         inputNumberOfInstances.sendKeys(textNumberOfInstances);
 
@@ -107,6 +111,5 @@ public class PricingCalculatorPage extends AbstractPage {
 
         return new PricingCalculatorPageComputeEnginePopup(driver);
     }
-
 
 }

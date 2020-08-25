@@ -8,7 +8,7 @@ public class MainTask3 {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Input the number of random numbers: ");
-        Integer number = in.nextInt();
+        int number = in.nextInt();
 
         for (int i = 0; i < number; i++) {
             System.out.print(Math.random() + "\n");

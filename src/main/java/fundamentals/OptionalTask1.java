@@ -6,14 +6,15 @@ import java.util.Scanner;
 
 public class OptionalTask1 {
     public static void main(String[] args) {
+
         int numberOfNumbers = 5;
 
         String[] arrayNumbers = new String[numberOfNumbers];
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input " + numberOfNumbers + " numbers");
 
-        for (int i=0; i<numberOfNumbers; i++){
-            System.out.println("Input " + (i+1) + " number:");
+        for (int i = 0; i < numberOfNumbers; i++) {
+            System.out.println("Input " + (i + 1) + " number:");
             arrayNumbers[i] = scanner.nextLine();
         }
 
@@ -37,8 +38,8 @@ public class OptionalTask1 {
         String number = array[0];
         int maxLength = array[0].length();
 
-        for (int i=0; i<array.length ; i++) {
-            if (array[i].length()  > maxLength){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].length() > maxLength) {
                 number = array[i];
                 maxLength = array[i].length();
             }
@@ -50,8 +51,8 @@ public class OptionalTask1 {
         String number = array[0];
         int minLength = array[0].length();
 
-        for (int i=0; i<array.length ; i++) {
-            if (array[i].length()  < minLength){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].length() < minLength) {
                 number = array[i];
                 minLength = array[i].length();
             }

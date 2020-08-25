@@ -1,14 +1,13 @@
-package pastebin;
+package pastebin.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import pastebin.util.Dropdown;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.ArrayList;
 
 
@@ -16,34 +15,36 @@ public class PastebinHomePage {
 
     private static final String HOMEPAGE_URL = "https://pastebin.com";
     private static final int WAIT_TIMEOUT_SECONDS = 10;
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+    private final Actions builder;
 
-    private By successMessage = By.id("success");
-    private By formPasteLocator = By.id("myform");
+    private final By formPasteLocator = By.tagName("form");
+    private final By successMessage = By.xpath("//div[@class='notice -success -post-view']");
 
-    @FindBy(id = "paste_code")
+    @FindBy(id = "postform-text")
     private WebElement textareaNewPaste;
 
-    @FindBy(css = "select[name='paste_format']")
+    @FindBy(css = "select[name='PostForm[format]']")
     private WebElement selectSyntaxHighlighting;
 
-    @FindBy(css = "select[name='paste_expire_date']")
+    @FindBy(css = "select[name='PostForm[expiration]']")
     private WebElement selectPasteExpiration;
 
-    @FindBy(css = "input[name='paste_name']")
+    @FindBy(css = "input[name='PostForm[name]']")
     private WebElement inputPasteNameTitle;
 
-    @FindBy(id = "submit")
+    @FindBy(css = "button.btn")
     private WebElement buttonCreateNewPaste;
 
     public PastebinHomePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        builder = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public PastebinHomePage openPage(){
+    public PastebinHomePage openPage() {
         driver.get(HOMEPAGE_URL);
         wait.until(ExpectedConditions.visibilityOfElementLocated(formPasteLocator));
         return this;
@@ -52,10 +53,10 @@ public class PastebinHomePage {
     public PastebinHomePage fillingForm(
             String textNewPaste,
             String textPasteExpiration,
-            String textPasteNameTitle){
+            String textPasteNameTitle) {
 
         textareaNewPaste.sendKeys(textNewPaste);
-        new Select(selectPasteExpiration).selectByVisibleText(textPasteExpiration);
+        Dropdown.selectHiddenItemByText(textPasteExpiration, selectPasteExpiration, builder, driver);
         inputPasteNameTitle.sendKeys(textPasteNameTitle);
         return this;
     }
@@ -64,22 +65,23 @@ public class PastebinHomePage {
             ArrayList<String> textNewPaste,
             String textSyntaxHighlighting,
             String textPasteExpiration,
-            String textPasteNameTitle){
+            String textPasteNameTitle) {
 
-        for (String string : textNewPaste){
+        for (String string : textNewPaste) {
             textareaNewPaste.sendKeys(string);
             textareaNewPaste.sendKeys(Keys.ENTER);
         }
 
-        new Select(selectSyntaxHighlighting).selectByVisibleText(textSyntaxHighlighting);
-        new Select(selectPasteExpiration).selectByVisibleText(textPasteExpiration);
+        Dropdown.selectHiddenItemByText(textSyntaxHighlighting, selectSyntaxHighlighting, builder, driver);
+        Dropdown.selectHiddenItemByText(textPasteExpiration, selectPasteExpiration, builder, driver);
         inputPasteNameTitle.sendKeys(textPasteNameTitle);
         return this;
     }
 
-    public PastePage createNewPaste(){
+    public PastePage createNewPaste() {
         buttonCreateNewPaste.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(successMessage));
         return new PastePage(driver);
     }
+
 }

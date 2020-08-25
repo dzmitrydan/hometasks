@@ -9,24 +9,23 @@ public class GoogleCloudHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://cloud.google.com";
 
-    public GoogleCloudHomePage(WebDriver driver) {
-        super(driver);
-    }
-
-
     @FindBy(xpath = "//a[@href='/pricing']")
     private WebElement tabPrising;
 
     @FindBy(xpath = "//a[@href='/products/calculator']")
     private WebElement dropdownItemCalculators;
 
-    public GoogleCloudHomePage openHomePage(){
+    public GoogleCloudHomePage(WebDriver driver) {
+        super(driver);
+    }
+
+    public GoogleCloudHomePage openHomePage() {
         driver.get(HOMEPAGE_URL);
         wait.until(ExpectedConditions.elementToBeClickable(tabPrising));
         return this;
     }
 
-    public PricingCalculatorPage openPricingCalculatorPage(){
+    public PricingCalculatorPage openPricingCalculatorPage() {
         tabPrising.click();
         wait.until(ExpectedConditions.elementToBeClickable(dropdownItemCalculators));
         dropdownItemCalculators.click();
@@ -34,7 +33,7 @@ public class GoogleCloudHomePage extends AbstractPage {
         for (String handle : driver.getWindowHandles()) {
             driver.switchTo().window(handle);
         }
-
         return new PricingCalculatorPage(driver);
     }
+
 }

@@ -7,20 +7,20 @@ public class MainTask4 {
 
         Scanner in = new Scanner(System.in);
 
-        Integer digit;
-        Integer sumDigit = 0;
+        int digit;
+        int sumDigit = 0;
 
         boolean end = true;
 
-        while (end){
-            System.out.println("\n Input integer number");
+        while (end) {
+            System.out.println("\n" + "Input integer number:");
 
             try {
                 digit = in.nextInt();
                 sumDigit = sumDigit + digit;
 
-                System.out.print("If you want to finish, type not a number");
-            } catch (Exception e){
+                System.out.print("(If you want to finish, type not a number)");
+            } catch (Exception e) {
                 end = false;
             }
         }

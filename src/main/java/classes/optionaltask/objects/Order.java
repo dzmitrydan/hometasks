@@ -4,7 +4,7 @@ public class Order {
 
     private int orderNumber;
     private int customerNumber;
-    private Pizza [] pizzas;
+    private Pizza[] pizzas;
 
 
     public Order(int customerNumber, Pizza[] pizzas) {

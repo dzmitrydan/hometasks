@@ -16,18 +16,18 @@ public class OptionalTask2 {
 
         try {
             number = scanner.nextInt();
-        } catch (InputMismatchException exception){
-            System.out.print("You didn't enter a number!" );
+        } catch (InputMismatchException exception) {
+            System.out.print("You didn't enter a number!");
         }
 
         numbers = String.valueOf(number).toCharArray();
 
-        for(char num : numbers){
+        for (char num : numbers) {
             stack.push(num);
         }
 
-        while(!stack.empty()){
-            char stackNumber = (Character)stack.pop();
+        while (!stack.empty()) {
+            char stackNumber = (Character) stack.pop();
             System.out.print(stackNumber);
         }
     }

@@ -17,10 +17,10 @@ public class MainTask {
 
         File inputFile = new File(args[0].trim());
 
-        if (inputFile.exists()){
-            if (inputFile.isDirectory()){
+        if (inputFile.exists()) {
+            if (inputFile.isDirectory()) {
                 writeToFile(inputFile);
-            } else if (inputFile.isFile()){
+            } else if (inputFile.isFile()) {
                 readFile(inputFile);
             } else System.out.println("It's not a Directory or a File");
         } else System.out.println("File does not exist");
@@ -31,8 +31,8 @@ public class MainTask {
 
         File fileDirectoryTreeInfo = new File("DirectoryTreeInfo.txt");
 
-        try(FileWriter writer = new FileWriter(fileDirectoryTreeInfo);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+        try (FileWriter writer = new FileWriter(fileDirectoryTreeInfo);
+             BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
 
             bufferedWriter.write("-> " + directoryForWritingToFile.getName());
             bufferedWriter.newLine();
@@ -46,9 +46,9 @@ public class MainTask {
     private static void writeString(File[] listFiles, BufferedWriter bufferedWriter, int tabCountDirectory, int tabCountFile) throws IOException {
         StringBuffer tab = new StringBuffer();
 
-        for (File dir : listFiles){
-            if(dir.isDirectory()) {
-                tab.setLength(5*(tabCountDirectory++));
+        for (File dir : listFiles) {
+            if (dir.isDirectory()) {
+                tab.setLength(5 * (tabCountDirectory++));
                 bufferedWriter.write(tab.toString() + "-> " + dir.getName());
                 bufferedWriter.newLine();
 
@@ -56,8 +56,8 @@ public class MainTask {
                 tabCountDirectory--;
                 tabCountFile--;
             }
-            if(dir.isFile()){
-                tab.setLength(5*(tabCountFile));
+            if (dir.isFile()) {
+                tab.setLength(5 * (tabCountFile));
                 bufferedWriter.write(tab.toString() + "* " + dir.getName());
                 bufferedWriter.newLine();
             }
@@ -79,10 +79,10 @@ public class MainTask {
                 countingAverageNumberOfFilesInTheDirectory();
                 countingTheAverageLengthOfFileName();
 
-                System.out.println ("Number of directories = " + numberOfDirectories);
-                System.out.println ("Number of files = " + numberOfFiles);
-                System.out.println ("Average number of files in the directory = " + averageNumberOfFilesInTheDirectory);
-                System.out.println ("Average length of file name = " + averageLengthOfFileName);
+                System.out.println("Number of directories = " + numberOfDirectories);
+                System.out.println("Number of files = " + numberOfFiles);
+                System.out.println("Average number of files in the directory = " + averageNumberOfFilesInTheDirectory);
+                System.out.println("Average length of file name = " + averageLengthOfFileName);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -94,21 +94,21 @@ public class MainTask {
 
     private static void countingTheNumberOfDirectoriesAndFiles(ArrayList<String> list) {
         for (String string : list) {
-            if (string.contains("-> ")){
+            if (string.contains("-> ")) {
                 ++numberOfDirectories;
             }
-            if (string.contains("* ")){
+            if (string.contains("* ")) {
                 ++numberOfFiles;
                 sumLengthOfFileNames += string.trim().replace("* ", "").length();
             }
         }
     }
 
-    private static void countingAverageNumberOfFilesInTheDirectory(){
+    private static void countingAverageNumberOfFilesInTheDirectory() {
         averageNumberOfFilesInTheDirectory = (double) numberOfFiles / (double) numberOfDirectories;
     }
 
-    private static void countingTheAverageLengthOfFileName(){
+    private static void countingTheAverageLengthOfFileName() {
         averageLengthOfFileName = (double) sumLengthOfFileNames / (double) numberOfFiles;
     }
 
