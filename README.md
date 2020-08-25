@@ -13,3 +13,6 @@ Other practical tasks on **Level 1**:
 * ***Java. Clean Code*** ([aircompany](https://github.com/dzmitrydan/aircompany.git))
 * ***Git*** ([git-hometasks](https://github.com/dzmitrydan/git-hometasks.git); [git-hometasks-backup](https://github.com/dzmitrydan/git-hometasks-backup.git))
 * ***Jenkins*** and ***Jenkins*** ([jenkins-maven](https://github.com/dzmitrydan/jenkins-maven.git))
+
+Practical task **Level 2**:
+* ***Framework*** ([framework-hometask](https://github.com/dzmitrydan/framework-hometask.git))
